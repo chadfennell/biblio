@@ -852,7 +852,8 @@ function biblio_entities() {
 
 /**
  * Create a biblio entity object
- * @param string $publication_type
+ *
+ * @param $type
  *  The publication type of the biblio to be created (bundle)
  * @param array $values
  *  An associative array of any additional values to be set when creating this
@@ -860,7 +861,9 @@ function biblio_entities() {
  *  Example: $values['language'] => 'en';
  * @return object The biblio object, with default values.
  */
-function biblio_create($publication_type, $values = array()) {
+function biblio_create($type, $values = array()) {
+  $values['type'] = $type;
+  return entity_create('biblio', $values);
 }
 
 /**
