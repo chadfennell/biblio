@@ -6,12 +6,16 @@
 class BiblioContributor extends Entity {
 
   public function __construct($values = array()) {
+    parent::__construct($values, 'biblio_contributor');
+    if (!empty($this->cid)) {
+      return;
+    }
+
     $name = $values['name'];
     if (empty($name)) {
       throw new Exception('Contributor given or family name is missing.');
     }
 
-    parent::__construct($values, 'biblio_contributor');
     $wrapper = entity_metadata_wrapper('biblio_contributor', $this);
 
     // @todo: Add fields if not yet added.
